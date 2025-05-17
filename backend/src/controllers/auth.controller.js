@@ -1,6 +1,6 @@
 import bcryptjs from "bcryptjs";
 import { db } from "../libs/db.js";
-import { UserRole } from "../generated/prisma";
+import { UserRole } from "../generated/prisma/index.js";
 
 
 export const register=async(req, res )=>{

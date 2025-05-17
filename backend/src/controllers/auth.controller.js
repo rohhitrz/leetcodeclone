@@ -4,6 +4,7 @@ import { UserRole } from "../generated/prisma/index.js";
 import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
+  //destructuring 
   const { email, name, password } = req.body;
   try {
     const existingUser = await db.user.findUnique({

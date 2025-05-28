@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  judge0:
+    image: judge0/judge0:latest
+    volumes:
+      - ./judge0-conf.env:/judge0.conf
+    ports:
+      - "2358:2358"
+    privileged: true
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:13.0
+    env_file: ./judge0-conf.env
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/
+    ports:
+      - "5437:5432"
+
+  redis:
+    image: redis:6.0
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+
+  my-postgres:
+    image: postgres:13.0
+    container_name: my-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: leetlab
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-leetlab-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:
+  redis-data:
+  postgres-leetlab-data: 

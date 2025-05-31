@@ -4,7 +4,7 @@ import { createProblem,getProblems,getProblembyId,updateProblembyId,deleteProble
 
 const ProblemRoutes=exporess.Router();
 
-ProblemRoutes.post("/create",authMiddleware, checkAdmin, createProblem)
+ProblemRoutes.post("/create-problem",authMiddleware, checkAdmin, createProblem)
 ProblemRoutes.get("/get-all-problems",authMiddleware,getProblems);
 ProblemRoutes.get("/get-problem/:id",authMiddleware,getProblembyId);
 ProblemRoutes.put("/update-p roblem/:id",authMiddleware,checkAdmin,updateProblembyId)
